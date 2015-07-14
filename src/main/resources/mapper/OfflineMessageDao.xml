@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.xiezefan.easyim.server.dao.OfflineMessageDao">
+    <resultMap type="me.xiezefan.easyim.server.model.OfflineMessage" id="OfflineMessageResultMap">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="status" property="status" javaType="me.xiezefan.easyim.server.model.MessageStatus"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="DATE"/>
+        <association property="message"
+                     resultMap="me.xiezefan.easyim.server.dao.MessageDao.MessageResultMap"
+                     columnPrefix="m_"/>
+    </resultMap>
+
+    <select id="findById" resultMap="OfflineMessageResultMap">
+      select
+        o.id as id,
+        o.user_id as user_id,
+        o.status as status,
+        o.create_time as create_time,
+        m.id as m_id,
+        m.from_id as m_from_id,
+        m.to_id as m_to_id,
+        m.type as m_type,
+        m.content as m_content,
+        m.create_time as m_create_time
+      from
+        tb_offline_message o
+      left join
+        tb_message m
+      on
+        o.message_id=m.id
+      where
+        o.id=#{id}
+    </select>
+
+    <select id="findOffline" resultMap="OfflineMessageResultMap">
+      select
+        o.id as id,
+        o.user_id as user_id,
+        o.status as status,
+        o.create_time as create_time,
+        m.id as m_id,
+        m.from_id as m_from_id,
+        m.to_id as m_to_id,
+        m.type as m_type,
+        m.content as m_content,
+        m.create_time as m_create_time
+      from
+        tb_offline_message o
+      left join
+        tb_message m
+      on
+        o.message_id=m.id
+      where
+        o.user_id=#{user_id}
+      and
+        status='SEND'
+    </select>
+
+</mapper>

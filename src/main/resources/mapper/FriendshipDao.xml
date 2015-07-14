@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.xiezefan.easyim.server.dao.FriendshipDao">
+    <resultMap type="me.xiezefan.easyim.server.model.Friendship" id="FriendshipResultMap">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <association property="friend"
+                     resultMap="me.xiezefan.easyim.server.dao.UserDao.UserResultMap"
+                     columnPrefix="u_"/>
+    </resultMap>
+
+    <select id="findByUserId" resultMap="FriendshipResultMap">
+        select
+          f.id as id,
+          f.user_id as user_id,
+          u.id as u_id,
+          u.username as u_username,
+          u.nickname as u_nickname,
+          u.avatar as u_avatar
+        from
+          tb_friendship f
+        left join
+          tb_user u
+        on
+          u.id = f.friend_id
+        where
+          f.user_id = #{user_id}
+    </select>
+
+    <select id="findById" resultMap="FriendshipResultMap">
+        select
+            f.id as id,
+            f.user_id as user_id,
+            u.id as u_id,
+            u.username as u_username,
+            u.nickname as u_nickname,
+            u.avatar as u_avatar
+        from
+          tb_friendship f
+        left join
+          tb_user u
+        on
+          u.id = f.friend_id
+        where
+          f.id = #{id}
+    </select>
+
+</mapper>

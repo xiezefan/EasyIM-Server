@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.xiezefan.easyim.server.dao.UserDao">
+    <resultMap type="me.xiezefan.easyim.server.model.User" id="UserResultMap">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="avatar" property="avatar"/>
+        <result column="description" property="description"/>
+        <result column="location" property="location"/>
+        <result column="sex" property="sex"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="DATE"/>
+    </resultMap>
+
+</mapper>
