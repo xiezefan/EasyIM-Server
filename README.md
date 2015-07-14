@@ -48,6 +48,21 @@ EasyIM-Server主要完成一下功能：
 
 ```
 
+### 快速运行
+
+前置条件：
+
+* 安装Mysql
+* 安装Maven
+
+运行步骤：
+
+1. 创建数据库`easyim`,并导入`sql/easy_im_v1.sql`
+2. 修改`src/main/resources/applicationContext.xml`中mysql的配置
+3. 在`EasyIM-Server`根目录执行`maven jetty:run`
+4. 使用Post请求`localhost:8080/EasyIM-Server/users/register`确定服务是否正常启动
+
+
 ### 框架与技术
 
 EasyIM Server 主要为EasyIM客户端提供Restful API。 主要使用了以下框架及第三方服务：
