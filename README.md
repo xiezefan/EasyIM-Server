@@ -60,7 +60,7 @@ EasyIM-Server主要完成一下功能：
 1. 创建数据库`easyim`,并导入`sql/easy_im_v1.sql`
 2. 修改`src/main/resources/applicationContext.xml`中mysql的配置
 3. 在`EasyIM-Server`根目录执行`maven jetty:run`
-4. 使用Post请求`localhost:8080/EasyIM-Server/users/register`确定服务是否正常启动
+4. 使用Post请求`localhost:8080/users/register`确定服务是否正常启动
 
 
 ### 框架与技术
